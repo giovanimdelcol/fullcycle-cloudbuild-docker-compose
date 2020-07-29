@@ -2,8 +2,8 @@
 # $ gcloud builds submit . --config=cloudbuild.yaml
 substitutions:
     _DOCKER_COMPOSE_VERSION: 1.25.5
-  steps:
-  - name: 'gcr.io/cloud-builders/docker'
+steps:
+- name: 'gcr.io/cloud-builders/docker'
     args:
     - 'build'
     - '--build-arg'
@@ -13,11 +13,10 @@ substitutions:
     - '-t'
     - 'gcr.io/$PROJECT_ID/docker-compose:${_DOCKER_COMPOSE_VERSION}'
     - '.'
-  - name: 'gcr.io/$PROJECT_ID/docker-compose'
+- name: 'gcr.io/$PROJECT_ID/docker-compose'
     args: ['version']
-  
-  images:
-  - 'gcr.io/$PROJECT_ID/docker-compose:latest'
-  - 'gcr.io/$PROJECT_ID/docker-compose:${_DOCKER_COMPOSE_VERSION}'
-  tags: ['cloud-builders-community']
-  © 2020 GitHub, Inc.
+
+images:
+- 'gcr.io/$PROJECT_ID/docker-compose:latest'
+- 'gcr.io/$PROJECT_ID/docker-compose:${_DOCKER_COMPOSE_VERSION}'
+tags: ['cloud-builders-community']
